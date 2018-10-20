@@ -13,6 +13,7 @@ int minlen=6;
 int darkness=5; 
 int xskip=1;
 int yskip=1;
+int line_count = 0;
 
  void setup() {
   size(800,800);
@@ -63,6 +64,7 @@ int yskip=1;
        if ((c == 255 && run)||(run && y == output.height-1)) {
          if (abs(y-lasty) > minlen) {
          svg.line(x, lasty, x, y);
+         line_count++;
          }
          run=false;
          continue;
@@ -96,6 +98,7 @@ int yskip=1;
        if ((c == 255 && run) || (run && x == output.width-1)) {
          if (abs(x-lastx) > minlen) {
            svg.line(lastx, y, x, y);
+           line_count++;
          }
          run=false;
          continue;
@@ -118,6 +121,7 @@ int yskip=1;
    svg.dispose();
    svg.endDraw();
    println("finished");
+   println("Total lines", line_count);
    exit();
  }
  
